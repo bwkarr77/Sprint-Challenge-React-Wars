@@ -6,4 +6,11 @@
   text-shadow: 1px 1px 5px #fff;
 }
 
+form {
+  width: 100%;
+  display: flex;
+}
 /* write your parent styles in here for your App.js */
+Card {
+  background: green;
+}

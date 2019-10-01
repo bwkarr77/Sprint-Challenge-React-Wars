@@ -7,7 +7,7 @@ const CharacterCard = props => {
       <Card height="5000px">
         <CardImg src="" width="100%" top />
         <CardBody height="100%">
-          <CardTitle font-size="50px">Character name: {props.name}</CardTitle>
+          <CardTitle fontSize="50px">Character name: {props.name}</CardTitle>
           <hr />
           <CardText>Character Descriptions:</CardText>
           <CardText>Height: {props.height}</CardText>

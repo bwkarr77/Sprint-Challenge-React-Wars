@@ -1,39 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import CharacterCard from "./CharacterCard.jsx";
 import { Container, Row, Button } from "reactstrap";
 
-const CharacterList = props => {
-  let characterIndex = 1;
+const CharacterList = () => {
   const [characterSel, setCharacterSel] = useState([]);
+  const [charVal, setCharVal] = useState(1);
 
-  const nextCharacter = () => {
-    characterIndex += 1;
-  };
-  useEffect(() => {
+  function newChar(val) {
     axios
-      .get(`https://swapi.co/api/people/${characterIndex}/`)
+      .get(`https://swapi.co/api/people/${val}/`)
       //   .get(`https://swapi.co/api/people/${1}`)
       .then(results => {
-        console.log("axios get....");
         //   const siteKeys = [`count`, `next`, `previous`, `results`];
         console.log(results.data);
         setCharacterSel(results.data);
       })
       .catch(err => console.log(err));
-  }, []);
+  }
+
+  async function nextCharacter() {
+    const result = await newChar(charVal);
+  }
 
   return (
     <Container>
       <Row>
-        <CharacterCard
-          name={characterSel.name}
-          height={characterSel.height}
-          hair_color={characterSel.hair_color}
-          homeworld={characterSel.homeworld}
-        />
-        <Button color="primary">Next</Button>
-        <Button color="secondary">Prev</Button>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            nextCharacter();
+          }}
+        >
+          <Button
+            type="submit"
+            color="secondary"
+            onClick={() => {
+              setCharVal(charVal - 1);
+              // console.log(charVal);
+            }}
+          >
+            Prev
+          </Button>
+          <CharacterCard
+            name={characterSel.name}
+            height={characterSel.height}
+            hair_color={characterSel.hair_color}
+            homeworld={characterSel.homeworld}
+          />
+          <Button
+            type="submit"
+            color="primary"
+            onClick={() => {
+              setCharVal(charVal + 1);
+              // console.log(charVal);
+            }}
+          >
+            Next
+          </Button>
+        </form>
       </Row>
     </Container>
   );
