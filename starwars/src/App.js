@@ -3,6 +3,7 @@ import "./App.css";
 // import axios from "axios";
 //import components
 import CharacterList from "./components/CharacterList.jsx";
+import CharacterSelection from "./components/CharacterSelection.jsx";
 
 const App = () => {
   // Try to think through what state you'll need for this app before starting. Then build out
@@ -15,6 +16,7 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="Header">React Wars</h1>
+      <CharacterSelection />
       <CharacterList />
     </div>
   );
