@@ -7,9 +7,9 @@ const CharacterList = props => {
   let characterIndex = 1;
   const [characterSel, setCharacterSel] = useState([]);
 
-  const nextCharacter = (){
-        characterIndex += 1;
-  }
+  const nextCharacter = () => {
+    characterIndex += 1;
+  };
   useEffect(() => {
     axios
       .get(`https://swapi.co/api/people/${characterIndex}/`)
@@ -32,7 +32,7 @@ const CharacterList = props => {
           hair_color={characterSel.hair_color}
           homeworld={characterSel.homeworld}
         />
-        <Button color="primary" onClick=(selectionCharacter())>Next</Button>
+        <Button color="primary">Next</Button>
         <Button color="secondary">Prev</Button>
       </Row>
     </Container>
